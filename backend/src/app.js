@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+require("dotenv").config();
 
 const cors = require("cors");
 
@@ -20,9 +21,11 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 // load router
 
-const router = require("./router");
+const booksRouter = require("./routes/booksRouter");
+const usersRouter = require("./routes/usersRouter");
 
-app.use(router);
+app.use("/books/", booksRouter);
+app.use("/users/", usersRouter);
 
 // ready to export
 module.exports = app;
